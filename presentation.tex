@@ -1,0 +1,377 @@
+% !TEX program = lualatex   % Рекомендуется для Metropolis; можно заменить на pdflatex
+% Компиляция на Overleaf: Menu → Compiler → LuaLaTeX (или pdfLaTeX)
+% Тема metropolis доступна на Overleaf из коробки.
+% Альтернатива без внешних пакетов: закомментируйте metropolis и раскомментируйте Madrid.
+
+\documentclass[aspectratio=169,10pt,russian]{beamer}
+
+% --- Тема оформления ---
+\usetheme{metropolis}
+\metroset{progressbar=frametitle, subsectionpage=progressbar, numbering=fraction}
+\usecolortheme{default}
+
+% Запасной вариант (встроенная тема Beamer, без доп. пакетов):
+% \usetheme{Madrid}
+% \usecolortheme{whale}
+
+% --- Язык и кодировка ---
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+
+% --- Полезные пакеты ---
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=structure.fg,
+  urlcolor=structure.fg,
+}
+
+% --- Метаданные ---
+\title{ИИ-инструменты: обзор, сравнение и практика}
+\subtitle{От ChatGPT до агентов и локальных моделей}
+\author{Имя Фамилия}          % <-- исправлено: убран комментарий внутри аргумента
+\institute{Организация / курс}% <-- исправлено
+\date{\today}
+
+% Маркер «заполнить» для скелета
+\newcommand{\todo}[1]{\textcolor{red!70!black}{\textit{[#1]}}}
+
+\begin{document}
+
+% ============================================================
+\maketitle
+
+\begin{frame}{О презентации}
+  \begin{itemize}
+    \item Цель: систематизировать опыт работы с ИИ-инструментами с конца 2022~г.
+    \item Охват: типы решений, бенчмарки, доступность из РФ, сценарии и техники.
+    \item Формат: обзор + личные выводы по \todo{реально протестированным} инструментам.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Содержание}
+  \tableofcontents
+\end{frame}
+
+% ============================================================
+\section{Временная шкала развития ИИ-инструментов}
+
+\begin{frame}{Ключевые вехи (конец 2022 — настоящее время)}
+  \small
+  \begin{tabularx}{\linewidth}{@{}l X@{}}   % исправлено: добавлена закрывающая }
+    \toprule
+    \textbf{Период} & \textbf{Событие} \\
+    \midrule
+    Ноя 2022       & ChatGPT — массовый доступ к диалоговому ИИ \\
+    Мар 2023       & GPT-4; начало «гонки» мультимодальных моделей \\
+    Июл 2023       & Claude~2; расширение контекста и безопасности \\
+    Ноя 2023       & GPT-4 Turbo, Assistants API; Gemini 1.0 \\
+    2024           & GPT-4o, Claude~3, Llama~3; IDE-ассистенты (Cursor, Copilot) \\
+    2024–2025      & Reasoning-модели (o1, o3); взрыв агентских фреймворков \\
+    2025           & \todo{DeepSeek, Claude~4, GPT-4.1/5 — актуализировать} \\
+    \bottomrule
+  \end{tabularx}
+
+  \vspace{0.5em}
+  \todo{Добавить 2–3 лично значимых события (релиз протестированного инструмента)}
+\end{frame}
+
+\begin{frame}{Эволюция парадигмы использования}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.48\textwidth}
+    \textbf{2022–2023}
+    \begin{itemize}
+      \item Чат как «умный поиск»
+      \item Копипаст кода в браузер
+      \item Первые API-интеграции
+    \end{itemize}
+
+    \column{0.48\textwidth}
+    \textbf{2024–2026}
+    \begin{itemize}
+      \item IDE и агенты «внутри» рабочего процесса
+      \item Локальные и гибридные схемы
+      \item Мультиагентные пайплайны
+    \end{itemize}
+  \end{columns}
+
+  \vspace{1em}
+  \centering
+  \todo{Вставить простую timeline-диаграмму (TikZ или рисунок)}
+\end{frame}
+
+% ============================================================
+\section{Типы ИИ-инструментов}
+
+\begin{frame}{Карта экосистемы}
+  \begin{itemize}
+    \item \textbf{Чат-интерфейсы} — ChatGPT, Claude, Gemini, Perplexity\ldots
+    \item \textbf{API} — OpenAI, Anthropic, Google, OpenRouter, Together\ldots
+    \item \textbf{IDE / редакторы} — Cursor, GitHub Copilot, JetBrains AI, Continue
+    \item \textbf{Агенты} — Devin-подобные, AutoGPT, CrewAI, Cursor Agent, Claude Code
+    \item \textbf{Локальные модели} — Ollama, LM Studio, llama.cpp, vLLM
+    \item \textbf{Российские платформы} — GigaChat, YandexGPT, Kandinsky, \todo{другие}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Чат vs API vs IDE vs агенты}
+  \footnotesize
+  \begin{tabularx}{\linewidth}{@{}l X X X@{}}   % исправлено
+    \toprule
+    \textbf{Тип} & \textbf{Сильные стороны} & \textbf{Слабые стороны} & \textbf{Когда выбирать} \\
+    \midrule
+    Чат   & Низкий порог входа & Мало контекста проекта & Быстрые вопросы, черновики \\
+    API   & Автоматизация, масштаб & Нужна разработка & Скрипты, боты, пайплайны \\
+    IDE   & Контекст кода, diff & Привязка к редактору & Ежедневная разработка \\
+    Агенты & Многошаговые задачи & Непредсказуемость, стоимость & Исследования, прототипы \\
+    Локальные & Приватность, офлайн & Железо, качество & Чувствительные данные \\
+    \bottomrule
+  \end{tabularx}
+\end{frame}
+
+\begin{frame}{Российские платформы — краткий обзор}
+  \begin{itemize}
+    \item \textbf{GigaChat (Сбер)} — \todo{модели, API, лимиты, ваш опыт}
+    \item \textbf{YandexGPT / YandexART} — \todo{интеграции, качество для русского}
+    \item \textbf{Kandinsky} — генерация изображений
+    \item \textbf{Другие} — \todo{Visper, RuGPT, корпоративные решения}
+  \end{itemize}
+
+  \vspace{0.5em}
+  \todo{Таблица: платформа / доступ без VPN / бесплатный tier / API}
+\end{frame}
+
+% ============================================================
+\section{Сравнение протестированных решений}
+
+\begin{frame}{Методология сравнения}
+  \begin{itemize}
+    \item \textbf{SWE-bench} — бенчмарк решения реальных GitHub-issues (код)
+    \item \textbf{Chatbot Arena (LMSYS)} — слепое сравнение моделей пользователями (Elo)
+    \item \textbf{Собственные тесты} — \todo{опишите 3–5 типовых задач}
+  \end{itemize}
+
+  \vspace{0.5em}
+  \small
+  Источники: \href{https://www.swebench.com/}{swebench.com},
+  \href{https://chat.lmsys.org/}{Chatbot Arena}
+\end{frame}
+
+\begin{frame}{SWE-bench: результаты (шаблон)}
+  \footnotesize
+  \begin{tabular}{lrrl}
+    \toprule
+    \textbf{Инструмент / модель} & \textbf{Resolved \%} & \textbf{Verified} & \textbf{Комментарий} \\
+    \midrule
+    \todo{Model A}  & -- & \todo{да/нет} & \todo{} \\
+    \todo{Model B}  & -- & \todo{да/нет} & \todo{} \\
+    \todo{Model C}  & -- & \todo{да/нет} & \todo{} \\
+    \todo{Cursor Agent} & -- & -- & \todo{личный опыт} \\
+    \bottomrule
+  \end{tabular}
+
+  \vspace{0.5em}
+  \todo{Подставить актуальные цифры на дату презентации}
+\end{frame}
+
+\begin{frame}{Chatbot Arena: лидеры (шаблон)}
+  \footnotesize
+  \begin{tabular}{lrl}
+    \toprule
+    \textbf{Модель} & \textbf{Arena Elo} & \textbf{Заметки} \\
+    \midrule
+    \todo{Top-1} & ---- & \todo{} \\
+    \todo{Top-2} & ---- & \todo{} \\
+    \todo{Top-3} & ---- & \todo{} \\
+    \todo{Протестированная вами} & ---- & \todo{субъективная оценка} \\
+    \bottomrule
+  \end{tabular}
+
+  \vspace{0.5em}
+  \todo{Скриншот или ссылка на актуальный leaderboard}
+\end{frame}
+
+\begin{frame}{Сводная таблица «что выбрал бы для…»}
+  \footnotesize
+  \begin{tabularx}{\linewidth}{@{}l XXX@{}}   % исправлено
+    \toprule
+    \textbf{Задача} & \textbf{1-й выбор} & \textbf{Запасной} & \textbf{Не рекомендую} \\
+    \midrule
+    Написание кода     & \todo{} & \todo{} & \todo{} \\
+    Рефакторинг        & \todo{} & \todo{} & \todo{} \\
+    Тексты / перевод   & \todo{} & \todo{} & \todo{} \\
+    Исследование темы  & \todo{} & \todo{} & \todo{} \\
+    Работа с документами & \todo{} & \todo{} & \todo{} \\
+    \bottomrule
+  \end{tabularx}
+\end{frame}
+
+% ============================================================
+\section{Доступность из России}
+
+\begin{frame}{Ограничения и обходные пути}
+  \begin{itemize}
+    \item \textbf{Геоблокировки} — ChatGPT, Claude, часть API; статус на \todo{дату}
+    \item \textbf{Оплата} — зарубежные карты, посредники, корпоративные аккаунты
+    \item \textbf{VPN / прокси} — риски ToS, стабильность, latency
+    \item \textbf{Локальные альтернативы} — без VPN, но другой уровень качества
+    \item \textbf{OpenRouter / прокси-API} — \todo{ваш опыт}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Матрица доступности (шаблон)}
+  \footnotesize
+  \begin{tabularx}{\linewidth}{@{}l X X X@{}}   % исправлено
+    \toprule
+    \textbf{Сервис} & \textbf{Без VPN} & \textbf{Оплата из РФ} & \textbf{API} \\
+    \midrule
+    ChatGPT / OpenAI & \todo{} & \todo{} & \todo{} \\
+    Claude           & \todo{} & \todo{} & \todo{} \\
+    Gemini           & \todo{} & \todo{} & \todo{} \\
+    Cursor           & \todo{} & \todo{} & \todo{} \\
+    GigaChat         & \todo{} & \todo{} & \todo{} \\
+    YandexGPT        & \todo{} & \todo{} & \todo{} \\
+    Ollama (локально)& Да & N/A & Локально \\
+    \bottomrule
+  \end{tabularx}
+
+  \vspace{0.5em}
+  \small
+  \todo{Пометить ✓/✗/частично; добавить юридический дисклеймер при необходимости}
+\end{frame}
+
+% ============================================================
+\section{Примеры использования}
+
+\begin{frame}{В работе}
+  \begin{itemize}
+    \item Code review и генерация тестов — \todo{пример}
+    \item Документация и README — \todo{пример}
+    \item Отладка и объяснение stack trace — \todo{пример}
+    \item Автоматизация рутины (скрипты, CI) — \todo{пример}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{В учёбе}
+  \begin{itemize}
+    \item Разбор сложных тем «на пальцах» — \todo{предмет}
+    \item Подготовка к экзаменам, карточки — \todo{}
+    \item Проверка решений (не подмена обучения!) — \todo{этика}
+    \item Работа с литературой: summary, связи — \todo{}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Планирование и исследования}
+  \begin{itemize}
+    \item \textbf{Планирование} — декомпозиция проектов, оценка рисков, чек-листы
+    \item \textbf{Исследования} — Perplexity / Deep Research / агентный поиск
+    \item \textbf{Ограничения} — галлюцинации, устаревшие данные, нужна верификация
+    \item \todo{1 кейс: «как решал(а) задачу от постановки до результата»}
+  \end{itemize}
+\end{frame}
+
+% ============================================================
+\section{Техники работы с ИИ}
+
+\begin{frame}{Промптинг и структура запросов}
+  \begin{itemize}
+    \item \textbf{Rôle + Context + Task + Format} — базовый шаблон
+    \item \textbf{Few-shot} — примеры желаемого вывода
+    \item \textbf{Chain-of-Thought} — «рассуждай по шагам» для сложной логики
+    \item \textbf{Итеративное уточнение} — черновик → критика → доработка
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Контекст, RAG и инструменты}
+  \begin{itemize}
+    \item \textbf{Контекстное окно} — что включать: файлы, diff, логи
+    \item \textbf{RAG} — база знаний, embeddings, chunking
+    \item \textbf{Tool use / function calling} — калькулятор, поиск, API
+    \item \textbf{Агентные паттерны} — planner–executor, рефлексия, human-in-the-loop
+  \end{itemize}
+
+  \vspace{0.5em}
+  \todo{Мини-демо: один «хороший» и один «плохой» промпт}
+\end{frame}
+
+\begin{frame}{Антипаттерны}
+  \begin{itemize}
+    \item Слепое доверие без проверки фактов и кода
+    \item Слишком длинный промпт без структуры
+    \item Передача секретов и PII в облачные сервисы
+    \item Ожидание «магии» от агента без постановки критериев успеха
+  \end{itemize}
+\end{frame}
+
+% ============================================================
+\section{Практические выводы}
+
+\begin{frame}{Что оказалось полезным}
+  \begin{itemize}
+    \item \todo{Инструмент 1 — конкретная польза}
+    \item \todo{Инструмент 2 — конкретная польза}
+    \item \todo{Приём / workflow, который стабильно работает}
+    \item \todo{Комбинация инструментов (например, IDE + чат + локальная модель)}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Что неудобно или переоценено}
+  \begin{itemize}
+    \item \todo{Высокая стоимость / нестабильный доступ}
+    \item \todo{Агенты: где тратят время впустую}
+    \item \todo{Модели, которые хуже ожиданий на ваших задачах}
+    \item \todo{Скрытые costs: время на промпты, review, исправление ошибок}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Рекомендации аудитории}
+  \begin{enumerate}
+    \item Начните с \todo{одного чата + одного IDE-ассистента}.
+    \item Заведите личный набор «эталонных задач» для сравнения моделей.
+    \item Для чувствительных данных — \todo{локальная или российская схема}.
+    \item Всегда верифицируйте код, факты и ссылки.
+    \item \todo{Ваш главный вывод в одном предложении}
+  \end{enumerate}
+\end{frame}
+
+% ============================================================
+\begin{frame}[standout]
+  Вопросы?
+
+  \vspace{1em}
+  \small
+  \todo{Контакты, ссылки на материалы, репозиторий с промптами}
+\end{frame}
+
+\appendix
+
+\begin{frame}{Приложение: полезные ссылки}
+  \small
+  \begin{itemize}
+    \item SWE-bench — \url{https://www.swebench.com/}
+    \item Chatbot Arena — \url{https://chat.lmsys.org/}
+    \item Papers With Code — \url{https://paperswithcode.com/}
+    \item \todo{Ваши избранные блоги, документация, каналы}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Приложение: глоссарий}
+  \footnotesize
+  \begin{tabularx}{\linewidth}{@{}l X@{}}   % исправлено
+    \toprule
+    \textbf{Термин} & \textbf{Кратко} \\
+    \midrule
+    LLM & Large Language Model — большая языковая модель \\
+    RAG & Retrieval-Augmented Generation \\
+    Elo & Рейтинговая система Chatbot Arena \\
+    SWE-bench & Бенчмарк программирования на реальных issues \\
+    Agent & Система с планированием и вызовом инструментов \\
+    \bottomrule
+  \end{tabularx}
+\end{frame}
+
+\end{document}
