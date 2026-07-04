@@ -266,37 +266,6 @@
   \end{itemize}
 \end{frame}
 
-\section{Техники работы с ИИ}
-
-\begin{frame}{Промптинг и структура запросов}
-  \begin{itemize}
-    \item \textbf{Rôle + Context + Task + Format} — базовый шаблон
-    \item \textbf{Few-shot} — примеры желаемого вывода
-    \item \textbf{Chain-of-Thought} — «рассуждай по шагам» для сложной логики
-    \item \textbf{Итеративное уточнение} — черновик → критика → доработка
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Контекст, RAG и инструменты}
-  \begin{itemize}
-    \item \textbf{Контекстное окно} — что включать: файлы, diff, логи
-    \item \textbf{RAG} — база знаний, embeddings, chunking
-    \item \textbf{Tool use / function calling} — калькулятор, поиск, API
-    \item \textbf{Агентные паттерны} — planner–executor, рефлексия, human-in-the-loop
-  \end{itemize}
-  \vspace{0.5em}
-  \todo{Мини-демо: один «хороший» и один «плохой» промпт}
-\end{frame}
-
-\begin{frame}{Антипаттерны}
-  \begin{itemize}
-    \item Слепое доверие без проверки фактов и кода
-    \item Слишком длинный промпт без структуры
-    \item Передача секретов и PII в облачные сервисы
-    \item Ожидание «магии» от агента без постановки критериев успеха
-  \end{itemize}
-\end{frame}
-
 \section{Практические выводы}
 
 \begin{frame}{Что оказалось полезным}
@@ -353,7 +322,6 @@
     \textbf{Термин} & \textbf{Кратко} \\
     \midrule
     LLM & Large Language Model — большая языковая модель \\
-    RAG & Retrieval-Augmented Generation \\
     Elo & Рейтинговая система Chatbot Arena \\
     SWE-bench & Бенчмарк программирования на реальных issues \\
     Agent & Система с планированием и вызовом инструментов \\
