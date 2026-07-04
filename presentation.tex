@@ -1,25 +1,16 @@
-% !TEX program = lualatex   % Рекомендуется для Metropolis; можно заменить на pdflatex
+% !TEX program = lualatex
 % Компиляция на Overleaf: Menu → Compiler → LuaLaTeX (или pdfLaTeX)
-% Тема metropolis доступна на Overleaf из коробки.
-% Альтернатива без внешних пакетов: закомментируйте metropolis и раскомментируйте Madrid.
 
 \documentclass[aspectratio=169,10pt,russian]{beamer}
 
-% --- Тема оформления ---
 \usetheme{metropolis}
 \metroset{progressbar=frametitle, subsectionpage=progressbar, numbering=fraction}
 \usecolortheme{default}
 
-% Запасной вариант (встроенная тема Beamer, без доп. пакетов):
-% \usetheme{Madrid}
-% \usecolortheme{whale}
-
-% --- Язык и кодировка ---
 \usepackage[T2A]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[russian]{babel}
 
-% --- Полезные пакеты ---
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{multirow}
@@ -30,19 +21,16 @@
   urlcolor=structure.fg,
 }
 
-% --- Метаданные ---
 \title{ИИ-инструменты: обзор, сравнение и практика}
 \subtitle{От ChatGPT до агентов и локальных моделей}
 \author{Имя Фамилия}
 \institute{Организация / курс}
 \date{\today}
 
-% Маркер «заполнить» для скелета
 \newcommand{\todo}[1]{\textcolor{red!70!black}{\textit{[#1]}}}
 
 \begin{document}
 
-% ============================================================
 \maketitle
 
 \begin{frame}{О презентации}
@@ -57,7 +45,6 @@
   \tableofcontents
 \end{frame}
 
-% ============================================================
 \section{Временная шкала развития ИИ-инструментов}
 
 \begin{frame}{Ключевые вехи (конец 2022 — настоящее время)}
@@ -75,9 +62,8 @@
     2025           & \todo{DeepSeek, Claude~4, GPT-4.1/5 — актуализировать} \\
     \bottomrule
   \end{tabularx}
-
   \vspace{0.5em}
-  \todo{Добавить 2–3 лично значимых события (релиз протестированного инструмента)}
+  \todo{Добавить 2–3 лично значимых события}
 \end{frame}
 
 \begin{frame}{Эволюция парадигмы использования}
@@ -89,7 +75,6 @@
       \item Копипаст кода в браузер
       \item Первые API-интеграции
     \end{itemize}
-
     \column{0.48\textwidth}
     \textbf{2024–2026}
     \begin{itemize}
@@ -98,13 +83,11 @@
       \item Мультиагентные пайплайны
     \end{itemize}
   \end{columns}
-
   \vspace{1em}
   \centering
-  \todo{Вставить простую timeline-диаграмму (TikZ или рисунок)}
+  \todo{Вставить простую timeline-диаграмму}
 \end{frame}
 
-% ============================================================
 \section{Типы ИИ-инструментов}
 
 \begin{frame}{Карта экосистемы}
@@ -140,12 +123,10 @@
     \item \textbf{Kandinsky} — генерация изображений
     \item \textbf{Другие} — \todo{Visper, RuGPT, корпоративные решения}
   \end{itemize}
-
   \vspace{0.5em}
   \todo{Таблица: платформа / доступ без VPN / бесплатный tier / API}
 \end{frame}
 
-% ============================================================
 \section{Сравнение протестированных решений}
 
 \begin{frame}{Методология сравнения}
@@ -153,15 +134,12 @@
     \item \textbf{SWE-bench} — бенчмарк решения реальных GitHub-issues
     \item \textbf{Chatbot Arena (LMSYS)} — слепое сравнение моделей пользователями
   \end{itemize}
-
   \vspace{0.5em}
   \small
   Источники: \href{https://www.swebench.com/}{swebench.com},
   \href{https://chat.lmsys.org/}{Chatbot Arena}
 \end{frame}
 
-% ============================================================
-% ИСПРАВЛЕННЫЙ СЛАЙД С ТАБЛИЦЕЙ
 \begin{frame}{SWE-bench: результаты}
   \footnotesize
   \begin{tabularx}{\linewidth}{@{}l c c@{}}
@@ -183,25 +161,33 @@
     \bottomrule
   \end{tabularx}
   \vspace{0.5em}
-  \todo{Подставить актуальные цифры на дату презентации}
 \end{frame}
-% ============================================================
 
-\begin{frame}{Chatbot Arena: лидеры (шаблон)}
+\begin{frame}{Chatbot Arena: лидеры}
   \footnotesize
-  \begin{tabular}{lrl}
+  \begin{tabular}{@{}l c@{}}
     \toprule
-    \textbf{Модель} & \textbf{Arena Elo} & \textbf{Заметки} \\
+    \textbf{Модель} & \textbf{Arena Elo} \\
     \midrule
-    \todo{Top-1} & ---- & \todo{} \\
-    \todo{Top-2} & ---- & \todo{} \\
-    \todo{Top-3} & ---- & \todo{} \\
-    \todo{Протестированная вами} & ---- & \todo{субъективная оценка} \\
+    \multicolumn{2}{c}{\textbf{Лидеры сайта (Top-3)}} \\
+    1. Claude Fable 5 (Anthropic) & 1510 \\
+    2. GPT-5.5-high (OpenAI) & 1506 \\
+    3. Gemini-3.1-Pro (Google) & 1505 \\
+    \multicolumn{2}{c}{\textbf{Протестированные вами ИИ}} \\
+    ChatGPT (GPT-5.4-high) & 1495 \\
+    DeepSeek & Данные не найдены \\
+    Gemini 3.1 Pro (Google AI Studio) & 1505 \\
+    Алиса AI (Yandex) & Данные не найдены \\
+    DeepAI & Данные не найдены \\
+    Qwen3 Coder 480B A35B (free) & 1201 (Arena Code) \\
+    Qwen: Qwen3 Next 80B A3B Instruct & Данные не найдены \\
+    Free Models Router (OpenRouter) & Нет собственного рейтинга \\
+    qwen3.5:9b & Данные не найдены \\
+    qwen2.5-coder:1.5b & Данные не найдены \\
+    Cursor IDE (бесплатная модель) & Данные не найдены \\
     \bottomrule
   \end{tabular}
-
   \vspace{0.5em}
-  \todo{Скриншот или ссылка на актуальный leaderboard}
 \end{frame}
 
 \begin{frame}{Сводная таблица «что выбрал бы для…»}
@@ -219,7 +205,6 @@
   \end{tabularx}
 \end{frame}
 
-% ============================================================
 \section{Доступность из России}
 
 \begin{frame}{Ограничения и обходные пути}
@@ -247,13 +232,11 @@
     Ollama (локально)& Да & N/A & Локально \\
     \bottomrule
   \end{tabularx}
-
   \vspace{0.5em}
   \small
   \todo{Пометить ✓/✗/частично; добавить юридический дисклеймер при необходимости}
 \end{frame}
 
-% ============================================================
 \section{Примеры использования}
 
 \begin{frame}{В работе}
@@ -283,7 +266,6 @@
   \end{itemize}
 \end{frame}
 
-% ============================================================
 \section{Техники работы с ИИ}
 
 \begin{frame}{Промптинг и структура запросов}
@@ -302,7 +284,6 @@
     \item \textbf{Tool use / function calling} — калькулятор, поиск, API
     \item \textbf{Агентные паттерны} — planner–executor, рефлексия, human-in-the-loop
   \end{itemize}
-
   \vspace{0.5em}
   \todo{Мини-демо: один «хороший» и один «плохой» промпт}
 \end{frame}
@@ -316,7 +297,6 @@
   \end{itemize}
 \end{frame}
 
-% ============================================================
 \section{Практические выводы}
 
 \begin{frame}{Что оказалось полезным}
@@ -347,10 +327,8 @@
   \end{enumerate}
 \end{frame}
 
-% ============================================================
 \begin{frame}[standout]
   Вопросы?
-
   \vspace{1em}
   \small
   \todo{Контакты, ссылки на материалы, репозиторий с промптами}
