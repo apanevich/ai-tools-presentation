@@ -33,8 +33,8 @@
 % --- Метаданные ---
 \title{ИИ-инструменты: обзор, сравнение и практика}
 \subtitle{От ChatGPT до агентов и локальных моделей}
-\author{Имя Фамилия}          % <-- исправлено: убран комментарий внутри аргумента
-\institute{Организация / курс}% <-- исправлено
+\author{Имя Фамилия}
+\institute{Организация / курс}
 \date{\today}
 
 % Маркер «заполнить» для скелета
@@ -62,7 +62,7 @@
 
 \begin{frame}{Ключевые вехи (конец 2022 — настоящее время)}
   \small
-  \begin{tabularx}{\linewidth}{@{}l X@{}}   % исправлено: добавлена закрывающая }
+  \begin{tabularx}{\linewidth}{@{}l X@{}}
     \toprule
     \textbf{Период} & \textbf{Событие} \\
     \midrule
@@ -120,7 +120,7 @@
 
 \begin{frame}{Чат vs API vs IDE vs агенты}
   \footnotesize
-  \begin{tabularx}{\linewidth}{@{}l X X X@{}}   % исправлено
+  \begin{tabularx}{\linewidth}{@{}l X X X@{}}
     \toprule
     \textbf{Тип} & \textbf{Сильные стороны} & \textbf{Слабые стороны} & \textbf{Когда выбирать} \\
     \midrule
@@ -150,9 +150,8 @@
 
 \begin{frame}{Методология сравнения}
   \begin{itemize}
-    \item \textbf{SWE-bench} — бенчмарк решения реальных GitHub-issues (код)
-    \item \textbf{Chatbot Arena (LMSYS)} — слепое сравнение моделей пользователями (Elo)
-    \item \textbf{Собственные тесты} — \todo{опишите 3–5 типовых задач}
+    \item \textbf{SWE-bench} — бенчмарк решения реальных GitHub-issues
+    \item \textbf{Chatbot Arena (LMSYS)} — слепое сравнение моделей пользователями
   \end{itemize}
 
   \vspace{0.5em}
@@ -161,22 +160,32 @@
   \href{https://chat.lmsys.org/}{Chatbot Arena}
 \end{frame}
 
-\begin{frame}{SWE-bench: результаты (шаблон)}
+% ============================================================
+% ИСПРАВЛЕННЫЙ СЛАЙД С ТАБЛИЦЕЙ
+\begin{frame}{SWE-bench: результаты}
   \footnotesize
-  \begin{tabular}{lrrl}
+  \begin{tabularx}{\linewidth}{@{}l c c@{}}
     \toprule
-    \textbf{Инструмент / модель} & \textbf{Resolved \%} & \textbf{Verified} & \textbf{Комментарий} \\
+    \textbf{Инструмент / модель} & \textbf{Resolved \%} & \textbf{Verified (да / нет)} \\
     \midrule
-    \todo{Model A}  & -- & \todo{да/нет} & \todo{} \\
-    \todo{Model B}  & -- & \todo{да/нет} & \todo{} \\
-    \todo{Model C}  & -- & \todo{да/нет} & \todo{} \\
-    \todo{Cursor Agent} & -- & -- & \todo{личный опыт} \\
+    \multicolumn{3}{c}{\textbf{Чат-интерфейсы и веб-сервисы}} \\
+    DeepSeek (DeepSeek-V3.2) & \textbf{60.9\%} & Да \\
+    Gemini 3.1 Pro (Google AI Studio) & \textbf{62.3\%} & Да \\
+    Алиса AI & Данные не найдены & --- \\
+    DeepAI & Данные не найдены & --- \\
+    \multicolumn{3}{c}{\textbf{ИИ-агенты}} \\
+    Qwen3 Coder 480B A35B (free) & \textbf{69.6\%} & Да \\
+    Qwen: Qwen3 Next 80B A3B Instruct & \textbf{>70\%} & Да \\
+    Free Models Router (OpenRouter) & \textbf{\~74.4\%} & Да \\
+    qwen3.5:9b & \textbf{59.2\%} & Да \\
+    qwen2.5-coder:1.5b & Данные не найдены & --- \\
+    Cursor IDE (бесплатная модель) & \textbf{\~71.8\%} & Нет (неофициальный) \\
     \bottomrule
-  \end{tabular}
-
+  \end{tabularx}
   \vspace{0.5em}
   \todo{Подставить актуальные цифры на дату презентации}
 \end{frame}
+% ============================================================
 
 \begin{frame}{Chatbot Arena: лидеры (шаблон)}
   \footnotesize
@@ -197,7 +206,7 @@
 
 \begin{frame}{Сводная таблица «что выбрал бы для…»}
   \footnotesize
-  \begin{tabularx}{\linewidth}{@{}l XXX@{}}   % исправлено
+  \begin{tabularx}{\linewidth}{@{}l XXX@{}}
     \toprule
     \textbf{Задача} & \textbf{1-й выбор} & \textbf{Запасной} & \textbf{Не рекомендую} \\
     \midrule
@@ -225,7 +234,7 @@
 
 \begin{frame}{Матрица доступности (шаблон)}
   \footnotesize
-  \begin{tabularx}{\linewidth}{@{}l X X X@{}}   % исправлено
+  \begin{tabularx}{\linewidth}{@{}l X X X@{}}
     \toprule
     \textbf{Сервис} & \textbf{Без VPN} & \textbf{Оплата из РФ} & \textbf{API} \\
     \midrule
@@ -361,7 +370,7 @@
 
 \begin{frame}{Приложение: глоссарий}
   \footnotesize
-  \begin{tabularx}{\linewidth}{@{}l X@{}}   % исправлено
+  \begin{tabularx}{\linewidth}{@{}l X@{}}
     \toprule
     \textbf{Термин} & \textbf{Кратко} \\
     \midrule
