@@ -1,0 +1,22 @@
+# LaTeX build files
+*.aux
+*.log
+*.toc
+*.out
+*.nav
+*.snm
+*.vrb
+*.bbl
+*.blg
+*.ind
+*.idx
+*.lot
+*.lof
+*.fls
+*.fdb_latexmk
+
+# Avoid committing .tex intermediate files
+*.tex~
+
+# But keep the final PDF!
+!presentation.pdf
