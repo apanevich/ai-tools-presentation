@@ -14,12 +14,21 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{multirow}
+\usepackage{graphicx}
 \usepackage{hyperref}
 \hypersetup{
   colorlinks=true,
   linkcolor=structure.fg,
   urlcolor=structure.fg,
 }
+
+% Иконки (увеличенный размер)
+\newcommand{\iconOpenAI}{\includegraphics[height=2.5ex]{images/openai.png}}
+\newcommand{\iconGoogle}{\includegraphics[height=2.5ex]{images/google.png}}
+\newcommand{\iconDeepSeek}{\includegraphics[height=2.5ex]{images/deepseek.png}}
+\newcommand{\iconYandex}{\includegraphics[height=2.5ex]{images/yandex.png}}
+\newcommand{\iconAnthropic}{\includegraphics[height=2.5ex]{images/anthropic.png}}
+\newcommand{\iconOllama}{\includegraphics[height=2.5ex]{images/ollama.png}}
 
 \title{ИИ-инструменты: обзор, сравнение и практика}
 \subtitle{От ChatGPT до агентов и локальных моделей}
@@ -63,7 +72,6 @@
     \bottomrule
   \end{tabularx}
   \vspace{0.5em}
-
 \end{frame}
 
 \begin{frame}{Эволюция парадигмы использования}
@@ -91,12 +99,12 @@
 
 \begin{frame}{Карта экосистемы}
   \begin{itemize}
-    \item \textbf{Чат-интерфейсы} — ChatGPT, Claude, Gemini, DeepSeek\ldots
-    \item \textbf{API} — OpenAI, Anthropic, Google, OpenRouter\ldots
+    \item \textbf{Чат-интерфейсы} — ChatGPT \iconOpenAI, Claude \iconAnthropic, Gemini \iconGoogle, DeepSeek \iconDeepSeek\ldots
+    \item \textbf{API} — OpenAI \iconOpenAI, Anthropic \iconAnthropic, Google \iconGoogle, OpenRouter\ldots
     \item \textbf{IDE / редакторы} — Cursor, GitHub Copilot, Continue
     \item \textbf{Агенты} — AutoGPT, Cursor Agent, Claude Code
-    \item \textbf{Локальные модели} — Ollama, LM Studio
-    \item \textbf{Российские платформы} — GigaChat, YandexGPT, Yandex AI Studio, Koda
+    \item \textbf{Локальные модели} — Ollama \iconOllama, LM Studio
+    \item \textbf{Российские платформы} — GigaChat, YandexGPT \iconYandex, Yandex AI Studio, Koda
   \end{itemize}
 \end{frame}
 
@@ -118,10 +126,9 @@
 \begin{frame}{Российские платформы — краткий обзор}
   \begin{itemize}
     \item \textbf{Koda}
-    \item \textbf{YandexGPT}
-    \item \textbf{Yandex AI studio}
-    \item \textbf{SourceCraft}
-    \item \textbf{Другие}
+    \item \textbf{YandexGPT} \iconYandex
+    \item \textbf{Yandex AI studio} \iconYandex
+    \item \textbf{SourceCraft} \iconYandex
   \end{itemize}
   \vspace{0.5em}
 \end{frame}
@@ -131,7 +138,7 @@
 \begin{frame}{Методология сравнения}
   \begin{itemize}
     \item \textbf{SWE-bench} — бенчмарк решения реальных GitHub-issues
-    \item \textbf{Chatbot Arena (LMSYS)} — слепое сравнение моделей пользователями
+    \item \textbf{Chatbot Arena} — слепое сравнение моделей пользователями
   \end{itemize}
   \vspace{0.5em}
   \small
@@ -146,8 +153,8 @@
     \textbf{Инструмент / модель} & \textbf{Resolved \%} & \textbf{Verified (да / нет)} \\
     \midrule
     \multicolumn{3}{c}{\textbf{Чат-интерфейсы и веб-сервисы}} \\
-    DeepSeek (DeepSeek-V3.2) & \textbf{60.9\%} & Да \\
-    Gemini 3.1 Pro (Google AI Studio) & \textbf{62.3\%} & Да \\
+    DeepSeek (DeepSeek-V3.2) \iconDeepSeek & \textbf{60.9\%} & Да \\
+    Gemini 3.1 Pro (Google AI Studio) \iconGoogle & \textbf{62.3\%} & Да \\
     Алиса AI & Данные не найдены & --- \\
     DeepAI & Данные не найдены & --- \\
     \multicolumn{3}{c}{\textbf{ИИ-агенты}} \\
@@ -169,14 +176,14 @@
     \textbf{Модель} & \textbf{Arena Elo} \\
     \midrule
     \multicolumn{2}{c}{\textbf{Лидеры сайта (Top-3)}} \\
-    1. Claude Fable 5 (Anthropic) & 1510 \\
-    2. GPT-5.5-high (OpenAI) & 1506 \\
-    3. Gemini-3.1-Pro (Google) & 1505 \\
+    1. Claude Fable 5 (Anthropic) \iconAnthropic & 1510 \\
+    2. GPT-5.5-high (OpenAI) \iconOpenAI & 1506 \\
+    3. Gemini-3.1-Pro (Google) \iconGoogle & 1505 \\
     \multicolumn{2}{c}{\textbf{Протестированные вами ИИ}} \\
-    ChatGPT (GPT-5.4-high) & 1495 \\
-    DeepSeek & Данные не найдены \\
-    Gemini 3.1 Pro (Google AI Studio) & 1505 \\
-    Алиса AI (Yandex) & Данные не найдены \\
+    ChatGPT (GPT-5.4-high) \iconOpenAI & 1495 \\
+    DeepSeek \iconDeepSeek & Данные не найдены \\
+    Gemini 3.1 Pro (Google AI Studio) \iconGoogle & 1505 \\
+    Алиса AI (Yandex) \iconYandex & Данные не найдены \\
     DeepAI & Данные не найдены \\
     Qwen3 Coder 480B A35B (free) & 1201 (Arena Code) \\
     Qwen: Qwen3 Next 80B A3B Instruct & Данные не найдены \\
@@ -284,6 +291,9 @@
   \end{tabularx}
 \end{frame}
 
-\section{Спасибо за внимание!}
+% Финальный слайд
+\begin{frame}[standout]
+  \Huge Спасибо за внимание!
+\end{frame}
 
-\end{document}\usepackage{graphicx}
+\end{document}
