@@ -37,7 +37,7 @@
   \begin{itemize}
     \item Цель: систематизировать опыт работы с ИИ-инструментами с конца 2022~г.
     \item Охват: типы решений, бенчмарки, доступность из РФ, сценарии и техники.
-    \item Формат: обзор + личные выводы по \todo{реально протестированным} инструментам.
+    \item Формат: обзор + личные выводы по реально протестированным инструментам.
   \end{itemize}
 \end{frame}
 
@@ -59,11 +59,11 @@
     Ноя 2023       & GPT-4 Turbo, Assistants API; Gemini 1.0 \\
     2024           & GPT-4o, Claude~3, Llama~3; IDE-ассистенты (Cursor, Copilot) \\
     2024–2025      & Reasoning-модели (o1, o3); взрыв агентских фреймворков \\
-    2025           & \todo{DeepSeek, Claude~4, GPT-4.1/5 — актуализировать} \\
+    2025           & {DeepSeek, Claude~4, GPT-4.1/5} \\
     \bottomrule
   \end{tabularx}
   \vspace{0.5em}
-  \todo{Добавить 2–3 лично значимых события}
+
 \end{frame}
 
 \begin{frame}{Эволюция парадигмы использования}
@@ -91,12 +91,12 @@
 
 \begin{frame}{Карта экосистемы}
   \begin{itemize}
-    \item \textbf{Чат-интерфейсы} — ChatGPT, Claude, Gemini, Perplexity\ldots
-    \item \textbf{API} — OpenAI, Anthropic, Google, OpenRouter, Together\ldots
-    \item \textbf{IDE / редакторы} — Cursor, GitHub Copilot, JetBrains AI, Continue
-    \item \textbf{Агенты} — Devin-подобные, AutoGPT, CrewAI, Cursor Agent, Claude Code
-    \item \textbf{Локальные модели} — Ollama, LM Studio, llama.cpp, vLLM
-    \item \textbf{Российские платформы} — GigaChat, YandexGPT, Kandinsky, \todo{другие}
+    \item \textbf{Чат-интерфейсы} — ChatGPT, Claude, Gemini, DeepSeek\ldots
+    \item \textbf{API} — OpenAI, Anthropic, Google, OpenRouter\ldots
+    \item \textbf{IDE / редакторы} — Cursor, GitHub Copilot, Continue
+    \item \textbf{Агенты} — AutoGPT, Cursor Agent, Claude Code
+    \item \textbf{Локальные модели} — Ollama, LM Studio
+    \item \textbf{Российские платформы} — GigaChat, YandexGPT, Yandex AI Studio, Koda
   \end{itemize}
 \end{frame}
 
@@ -117,13 +117,13 @@
 
 \begin{frame}{Российские платформы — краткий обзор}
   \begin{itemize}
-    \item \textbf{GigaChat (Сбер)} — \todo{модели, API, лимиты, ваш опыт}
-    \item \textbf{YandexGPT / YandexART} — \todo{интеграции, качество для русского}
-    \item \textbf{Kandinsky} — генерация изображений
-    \item \textbf{Другие} — \todo{Visper, RuGPT, корпоративные решения}
+    \item \textbf{Koda}
+    \item \textbf{YandexGPT}
+    \item \textbf{Yandex AI studio}
+    \item \textbf{SourceCraft}
+    \item \textbf{Другие}
   \end{itemize}
   \vspace{0.5em}
-  \todo{Таблица: платформа / доступ без VPN / бесплатный tier / API}
 \end{frame}
 
 \section{Сравнение протестированных решений}
@@ -189,51 +189,16 @@
   \vspace{0.5em}
 \end{frame}
 
-\begin{frame}{Сводная таблица «что выбрал бы для…»}
-  \footnotesize
-  \begin{tabularx}{\linewidth}{@{}l XXX@{}}
-    \toprule
-    \textbf{Задача} & \textbf{1-й выбор} & \textbf{Запасной} & \textbf{Не рекомендую} \\
-    \midrule
-    Написание кода     & \todo{} & \todo{} & \todo{} \\
-    Рефакторинг        & \todo{} & \todo{} & \todo{} \\
-    Тексты / перевод   & \todo{} & \todo{} & \todo{} \\
-    Исследование темы  & \todo{} & \todo{} & \todo{} \\
-    Работа с документами & \todo{} & \todo{} & \todo{} \\
-    \bottomrule
-  \end{tabularx}
-\end{frame}
-
 \section{Доступность из России}
 
 \begin{frame}{Ограничения и обходные пути}
   \begin{itemize}
-    \item \textbf{Геоблокировки} — ChatGPT, Claude, часть API; статус на \todo{дату}
-    \item \textbf{Оплата} — зарубежные карты, посредники, корпоративные аккаунты
-    \item \textbf{VPN / прокси} — риски ToS, стабильность, latency
+    \item \textbf{Геоблокировки} — ChatGPT, Gemini, Claude, часть API
+    \item \textbf{Оплата} — зарубежные карты, посредники, криптовалюта
+    \item \textbf{VPN / прокси}
     \item \textbf{Локальные альтернативы} — без VPN, но другой уровень качества
-    \item \textbf{OpenRouter / прокси-API} — \todo{ваш опыт}
+    \item \textbf{OpenRouter / прокси-API}
   \end{itemize}
-\end{frame}
-
-\begin{frame}{Матрица доступности (шаблон)}
-  \footnotesize
-  \begin{tabularx}{\linewidth}{@{}l X X X@{}}
-    \toprule
-    \textbf{Сервис} & \textbf{Без VPN} & \textbf{Оплата из РФ} & \textbf{API} \\
-    \midrule
-    ChatGPT / OpenAI & \todo{} & \todo{} & \todo{} \\
-    Claude           & \todo{} & \todo{} & \todo{} \\
-    Gemini           & \todo{} & \todo{} & \todo{} \\
-    Cursor           & \todo{} & \todo{} & \todo{} \\
-    GigaChat         & \todo{} & \todo{} & \todo{} \\
-    YandexGPT        & \todo{} & \todo{} & \todo{} \\
-    Ollama (локально)& Да & N/A & Локально \\
-    \bottomrule
-  \end{tabularx}
-  \vspace{0.5em}
-  \small
-  \todo{Пометить ✓/✗/частично; добавить юридический дисклеймер при необходимости}
 \end{frame}
 
 \section{Примеры использования}
@@ -295,13 +260,6 @@
   \end{enumerate}
 \end{frame}
 
-\begin{frame}[standout]
-  Вопросы?
-  \vspace{1em}
-  \small
-  \todo{Контакты, ссылки на материалы, репозиторий с промптами}
-\end{frame}
-
 \appendix
 
 \begin{frame}{Приложение: полезные ссылки}
@@ -325,5 +283,7 @@
     \bottomrule
   \end{tabularx}
 \end{frame}
+
+\section{Спасибо за внимание!}
 
 \end{document}
